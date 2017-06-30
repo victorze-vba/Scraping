@@ -1,0 +1,30 @@
+{
+      "name": "Luke Skywalker",
+      "height": "1.72 m",
+      "mass": "77 Kg",
+      "hair_color": "Blond",
+      "skin_color": "Caucasian",
+      "eye_color": "Blue",
+      "birth_year": "19 BBY",
+      "gender": "Male",
+      "homeworld": "http://swapi.co/api/planets/1/",
+      "films": [
+          "http://swapi.co/api/films/1/",
+          "http://swapi.co/api/films/2/",
+          "http://swapi.co/api/films/3/"
+      ],
+      "species": [
+          "http://swapi.co/api/species/1/"
+      ],
+      "vehicles": [
+          "http://swapi.co/api/vehicles/14/",
+          "http://swapi.co/api/vehicles/30/"
+      ],
+      "starships": [
+          "http://swapi.co/api/starships/12/",
+          "http://swapi.co/api/starships/22/"
+      ],
+      "created": "2014-12-09T13:50:51.644000Z",
+      "edited": "2014-12-10T13:52:43.172000Z",
+      "url": "http://swapi.co/api/people/1/"
+}
