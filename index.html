@@ -1,1 +1,132 @@
-<h1>Hola mundo</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VBA Script</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway:200" rel="stylesheet">
+</head>
+<body>
+  <a href="https://github.com/vba-dev/vba-scraping"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+
+  <div class="box-main">
+
+    <div class="header">
+      <h1 class="title">VBA Scraping</h1>
+    </div>
+
+
+    <div class="slogan">Extract data from the web easily</div>
+
+
+    <div class="example">
+      <div class="defined code">
+<pre>
+<spam class="kw">Dim</spam> page <spam class="kw">As New</spam> XmlScraping
+
+page.gotoPage "https://example.com/"
+</pre>
+      </div>
+    </div> <!-- example definition -->
+
+
+    <div class="example">
+      <div class="code">
+        <div class="description">The <strong>text</strong> of the first <span class="element">&lt;li&gt;</span> element</div>
+<pre>
+
+page.css("li").index(0).text
+</pre>
+      </div><!-- vba -->
+
+      <div class="code">
+<pre>
+&lt;div id="bar"&gt;
+  &lt;p&gt;Links:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a&gt;href="http://github.com"><span class="selected">Github</span>&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://w3schools.com">w3schools&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://youtube.com/">YouTube&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://wikipedia.org">Wikipedia&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div>
+</pre>
+      </div><!-- html -->
+    </div><!-- example li-->
+
+
+    <div class="download">
+      <a href="scraping.xlsm">Download examples</a>
+    </div>
+
+
+    <div class="example">
+      <div class="code">
+        <div class="description">The <span class="element">&lt;title&gt;</span> element</div>
+<pre>
+
+page.css('title')
+</pre>
+      </div><!-- vba -->
+
+      <div class="code">
+<pre>
+&lt;html&gt;
+&lt;head&gt;<span class="selected">&lt;title&gt;My webpage&lt;/title&gt;</span>&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Hello!&lt;/h1&gt;
+</pre>
+      </div><!-- html -->
+    </div><!-- example title -->
+
+
+    <div class="example">
+      <div class="code">
+        <div class="description">All <span class="element">&lt;li&gt;</span> elements</div>
+<pre>
+
+page.css("li")
+</pre>
+      </div><!-- vba -->
+
+      <div class="code">
+<pre>
+&lt;div id="bar"&gt;
+  &lt;p&gt;Links:&lt;/p&gt;
+  &lt;ul&gt;<span class="selected">
+    &lt;li&gt;&lt;a&gt;href="http://github.com">Github&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://w3schools.com">w3schools&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://youtube.com/">YouTube&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://wikipedia.org">Wikipedia&lt;/a&gt;&lt;/li&gt;</span>
+  &lt;/ul&gt;
+&lt;/div>
+</pre>
+      </div><!-- html -->
+    </div><!-- example li-->
+
+
+    <div class="example">
+      <div class="code">
+        <div class="description">The <strong>url</strong> of the <strong>second</strong> <span class="element">&lt;li&gt;</span> element</div>
+<pre>
+
+page.css("li").index(1).attr("href")
+</pre>
+      </div><!-- vba -->
+
+      <div class="code">
+<pre>
+&lt;div id="bar"&gt;
+  &lt;p&gt;Links:&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a&gt;href="http://github.com">Github&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="<span class="selected">http://w3schools.com</span>">w3schools&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://youtube.com/">YouTube&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://wikipedia.org">Wikipedia&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div>
+</pre>
+      </div><!-- html -->
+    </div><!-- example attr-->
+
+</body>
+</html>
