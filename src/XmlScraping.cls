@@ -20,32 +20,66 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private Doc As New MSHTML.HTMLDocument
+Private doc As New MSHTML.HTMLDocument
 
-Private Element As MSHTML.IHTMLElement
+Private element As MSHTML.IHTMLElement
 
-Private Elements As MSHTML.IHTMLElementCollection
+Private elements As MSHTML.IHTMLElementCollection
 
-Public Sub GotoPage(Url As String)
+Private children As MSHTML.IHTMLDOMChildrenCollection
+
+Public Sub gotoPage(url As String)
     Dim XMLPage As New MSXML2.XMLHTTP60
 
-    XMLPage.Open "GET", Url, False
+    XMLPage.Open "GET", url, False
     XMLPage.send
 
-    Doc.body.innerHTML = XMLPage.responseText
+    doc.body.innerHTML = XMLPage.responseText
 End Sub
 
-Public Function Css(Selector As String) As XmlScraping
-    Set Element = Doc.querySelector(Selector)
+Public Function css(selector As String) As XmlScraping
+    Set children = doc.querySelectorAll(selector)
     
-    Set Css = Me
+    Set css = Me
 End Function
 
-Public Function Text() As String
-    Text = Element.innerText
+Public Function ind(i As Integer) As XmlScraping
+    Set element = children(i)
+    
+    Set ind = Me
 End Function
 
-Public Function Html() As String
-    Html = Element.innerHTML
+Public Function at_css(selector As String) As XmlScraping
+    Set element = doc.querySelector(selector)
+    
+    Set at_css = Me
+End Function
+
+Public Function Class(selector As String) As XmlScraping
+    Set elements = doc.getElementsByClassName(selector)
+    
+    Set Class = Me
+End Function
+
+Public Function attr(nameAtribute As String) As String
+    attr = element.getAttribute(nameAtribute)
+End Function
+
+Public Function index(i As Integer) As XmlScraping
+    If element Is Nothing Then
+        Set element = children(i)
+    Else
+        Set element = children(i)
+    End If
+    
+    Set index = Me
+End Function
+
+Public Function text() As String
+    text = element.innerText
+End Function
+
+Public Function html() As String
+    html = element.innerHTML
 End Function
 
