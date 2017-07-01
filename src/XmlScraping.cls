@@ -20,66 +20,129 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Private doc As New MSHTML.HTMLDocument
+' --------------------------------------------- '
+' Properties
+' --------------------------------------------- '
 
-Private element As MSHTML.IHTMLElement
+Private Doc As New MSHTML.HTMLDocument
 
-Private elements As MSHTML.IHTMLElementCollection
+Private Element As MSHTML.IHTMLElement
 
-Private children As MSHTML.IHTMLDOMChildrenCollection
+Private Elements As MSHTML.IHTMLElementCollection
 
+Private Children As MSHTML.IHTMLDOMChildrenCollection
+
+' --------------------------------------------- '
+' Public Methods
+' --------------------------------------------- '
+
+''
+' Visit the url
+'
+' @param {String} url
+' @return void
+''
 Public Sub gotoPage(url As String)
     Dim XMLPage As New MSXML2.XMLHTTP60
 
     XMLPage.Open "GET", url, False
     XMLPage.send
 
-    doc.body.innerHTML = XMLPage.responseText
+    Doc.body.innerHTML = XMLPage.responseText
 End Sub
 
+''
+' Select a collection of items
+'
+' @param {String} selector
+' @return XmlScraping
+'
+' Example selector  id: "#nameId" | class: ".nameClas" | tag: "nameTag"
+''
 Public Function css(selector As String) As XmlScraping
-    Set children = doc.querySelectorAll(selector)
+    Set Children = Doc.querySelectorAll(selector)
     
     Set css = Me
 End Function
 
-Public Function ind(i As Integer) As XmlScraping
-    Set element = children(i)
-    
-    Set ind = Me
-End Function
-
+''
+' Select the first item in the collection
+'
+' @param {String} selector
+' @return XmlScraping
+''
 Public Function at_css(selector As String) As XmlScraping
-    Set element = doc.querySelector(selector)
+    Set Element = Doc.querySelector(selector)
     
     Set at_css = Me
 End Function
 
-Public Function Class(selector As String) As XmlScraping
-    Set elements = doc.getElementsByClassName(selector)
+''
+' Select a collection of elements with the class nameClass
+'
+' @param {String} nameClass
+' @return XmlScraping
+''
+Public Function Class(nameClass As String) As XmlScraping
+    Set Elements = Doc.getElementsByClassName(nameClass)
     
     Set Class = Me
 End Function
 
-Public Function attr(nameAtribute As String) As String
-    attr = element.getAttribute(nameAtribute)
+''
+' Select an elements with the specified id
+'
+' @param {String} nameId
+' @return XmlScraping
+''
+Public Function id(nameId As String) As XmlScraping
+    Set Element = Doc.getElementById(nameId)
+    
+    Set id = Me
 End Function
 
+''
+' Returns the value of the specified attribute
+'
+' @param {String} nameAtribute
+' @return String
+''
+Public Function attr(nameAtribute As String) As String
+    attr = Element.getAttribute(nameAtribute)
+End Function
+
+''
+' Select an item from an item collection
+'
+' @param {Integer} i
+' @return XmlScraping
+''
 Public Function index(i As Integer) As XmlScraping
-    If element Is Nothing Then
-        Set element = children(i)
+    If Element Is Nothing Then
+        Set Element = Children(i)
     Else
-        Set element = children(i)
+        Set Element = Children(i)
     End If
     
     Set index = Me
 End Function
 
+''
+' Returns the text of the selected element
+'
+' @return String
+''
 Public Function text() As String
-    text = element.innerText
+    text = Element.innerText
 End Function
 
+
+''
+' Returns the html of the selected element
+'
+' @return String
+''
 Public Function html() As String
-    html = element.innerHTML
+    html = Element.innerHTML
 End Function
 

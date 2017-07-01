@@ -3,29 +3,16 @@ Option Explicit
 
 Sub XmlScrapingTest()
     Dim Specs As New SpecSuite
-    Dim Browser As New XmlScraping
+    Dim Doc As New XmlScraping
 
-    Browser.gotoPage "https://stackoverflow.com/"
+    Doc.gotoPage "https://stackoverflow.com/"
     
-    With Specs.It("Get content of element")
-        .Expect(Browser.css("#nav-questions").text).ToEqual "Questions"
+    With Specs.It("Extract the text of an element with id 'nav-questions'")
+        .Expect(Doc.id("nav-questions").text).ToEqual "Questions"
     End With
     
-    With Specs.It("Get html of element")
-        .Expect(Browser.css(".js-gps-track").html).ToEqual "<SPAN class=-img>Stack Overflow</SPAN> "
-    End With
-
-    InlineRunner.RunSuite Specs
-End Sub
-
-Sub XmlIndexCollection()
-    Dim Specs As New SpecSuite
-    Dim doc As New XmlScraping
-
-    doc.gotoPage "https://vba-dev.github.io/vba-scraping/"
-    
-    With Specs.It("Item 0 of Collection")
-        .Expect(doc.Class("description").index(0).text).ToEqual ""
+    With Specs.It("Extract to the html of the first element of a collection with class .js-gps-track")
+        .Expect(Doc.css(".js-gps-track").index(0).html).ToEqual "<SPAN class=-img>Stack Overflow</SPAN> "
     End With
 
     InlineRunner.RunSuite Specs
@@ -33,24 +20,25 @@ End Sub
 
 Sub XmlCollection()
     Dim Specs As New SpecSuite
-    Dim doc As New XmlScraping
+    Dim Doc As New XmlScraping
 
-    doc.gotoPage "https://vba-dev.github.io/vba-scraping/"
+    Doc.gotoPage "https://vba-dev.github.io/vba-scraping/"
 
     With Specs.It("Select tag")
-        .Expect(doc.css("span").index(0).text).ToEqual "<li>"
-        .Expect(doc.css("span").index(2).html).ToEqual "&lt;title&gt;"
+        .Expect(Doc.css("span").index(0).text).ToEqual "<li>"
+        .Expect(Doc.css("span").index(2).html).ToEqual "&lt;title&gt;"
     End With
-Debug.Print doc.css("span").index(0).text
+
     With Specs.It("Select class")
-        .Expect(doc.at_css(".title").text).ToEqual "VBA Scraping"
-        .Expect(doc.css(".title").index(0).text).ToEqual "VBA Scraping"
-        .Expect(doc.Class("title").index(0).text).ToEqual "VBA Scraping"
+        .Expect(Doc.at_css(".title").text).ToEqual "VBA Scraping"
+        .Expect(Doc.css(".title").index(0).text).ToEqual "VBA Scraping"
+        .Expect(Doc.Class("title").index(0).text).ToEqual "VBA Scraping"
     End With
     
     With Specs.It("Select class")
-        .Expect(doc.css(".download a").index(0).attr("href")).ToEqual "about:scraping.xlsm"
+        .Expect(Doc.css(".download a").index(0).attr("href")).ToEqual "about:examples.xlsm"
     End With
     
     InlineRunner.RunSuite Specs
 End Sub
+
