@@ -20,101 +20,188 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
-Private IE As SHDocVw.InternetExplorer
+' --------------------------------------------- '
+' Properties
+' --------------------------------------------- '
 
-Private Doc As New MSHTML.HTMLDocument
+Private ie As SHDocVw.InternetExplorer
 
-Private Element As MSHTML.IHTMLElement
+Private doc As New MSHTML.HTMLDocument
 
-Private Elements As MSHTML.IHTMLElementCollection
+Private element As MSHTML.IHTMLElement
 
-Public Sub GotoPage(Url As String, Optional VisibleBrowser As Boolean = False)
-    Set IE = New SHDocVw.InternetExplorer
+Private elements As MSHTML.IHTMLElementCollection
 
-    IE.visible = VisibleBrowser
+Private children As MSHTML.IHTMLDOMChildrenCollection
 
-    IE.Navigate Url
+' --------------------------------------------- '
+' Public Methods
+' --------------------------------------------- '
+
+''
+' Visit a url and you can choose to view the browser
+'
+' @param {String} url
+' @param {Boolean} visibleBrowser
+' @return void
+''
+Public Sub gotoPage(url As String, Optional visibleBrowser As Boolean = False)
+    Set ie = New SHDocVw.InternetExplorer
+
+    ie.visible = visibleBrowser
+
+    ie.Navigate url
     
-    LoadBrowser
+    loadBrowser
     
-    Set Doc = IE.Document
+    Set doc = ie.Document
 End Sub
 
-Public Function Id(IdName As String) As Scraping
-    Set Element = Doc.getElementById(IdName)
+''
+' Select an elements with the specified id
+'
+' @param {String} idName
+' @return Scraping
+''
+Public Function id(idName As String) As Scraping
+    Set element = doc.getElementById(idName)
 
-    Set Id = Me
+    Set id = Me
 End Function
 
-Public Function Class(ClassName As String) As Scraping
-    Set Elements = Doc.getElementsByClassName(ClassName)
+''
+' Select a collection of elements with the class className
+'
+' @param {String} className
+' @return Scraping
+''
+Public Function Class(className As String) As Scraping
+    Set elements = doc.getElementsByClassName(className)
     
     Set Class = Me
 End Function
 
-Public Function Index(indexColl As Integer) As Scraping
-    Set Element = Elements(indexColl)
+''
+' Select an item from an elements collection
+'
+' @param {Integer} i
+' @return Scraping
+''
+Public Function index(i As Integer) As Scraping
+    Set element = children(i)
 
-    Set Class = Me
+    Set index = Me
 End Function
 
-Public Function Css(Selector As String) As Scraping
-    Set Element = Doc.querySelector(Selector)
+''
+' Returns the number of items in the collection
+'
+' @return Integer
+''
+Public Function count() As Integer
+    count = children.Length
+End Function
+
+''
+' Select a collection of elements
+'
+' @param {String} selector
+' @return Scraping
+'
+' Example selector  id: "#nameId" | class: ".nameClas" | tag: "nameTag"
+''
+Public Function css(selector As String) As Scraping
+    Set children = doc.querySelectorAll(selector)
     
-    Set Css = Me
+    Set css = Me
 End Function
 
-Public Function Text() As String
-    Text = Element.innerText
-End Function
-
-Public Function Html() As String
-    Html = Element.innerHTML
-End Function
-
-Public Function Click() As Scraping
-    Element.Click
+''
+' Select the first element in the collection
+'
+' @param {String} selector
+' @return Scraping
+''
+Public Function at_css(selector As String) As Scraping
+    Set element = doc.querySelector(selector)
     
-    LoadBrowser
-
-    Sleep 3
-    
-    Set Click = Me
+    Set at_css = Me
 End Function
 
-Public Sub Home()
-    IE.GoHome
+''
+' Returns the text of the selected element
+'
+' @return String
+''
+Public Function text() As String
+    text = element.innerText
+End Function
+
+''
+' Returns the html of the selected element
+'
+' @return String
+''
+Public Function html() As String
+    html = element.innerHTML
+End Function
+
+''
+' Click an element
+'
+' @return void
+''
+Public Sub click()
+    element.click
+
+    loadBrowser
+
+    sleep 3
+
+    Set click = Me
 End Sub
-
-Public Sub Quit()
-    If IE.visible Then IE.Quit
-End Sub
-
-Public Function Url()
-    Url = IE.LocationURL
-End Function
 
 ' --------------------------------------------- '
 ' Private Methods
 ' --------------------------------------------- '
 
-Private Sub LoadBrowser()
-    Do While IE.ReadyState <> READYSTATE_COMPLETE Or IE.Busy
+''
+' Wait for the browser to load
+'
+' @return void
+''
+Private Sub loadBrowser()
+    Do While ie.ReadyState <> READYSTATE_COMPLETE Or ie.Busy
     Loop
 End Sub
 
-Private Sub Sleep(Seconds As Byte)
+''
+' Pause in seconds
+'
+' @return void
+''
+Private Sub sleep(Seconds As Byte)
     Application.Wait (Now + TimeValue("0:00:0" + CStr(Seconds)))
 End Sub
- 
+
+''
+' Runs when instantiating on object
+'
+' @return void
+''
 Private Sub Class_Initialize()
     
 End Sub
 
+''
+' Runs when object is no longer used
+'
+' @return void
+''
 Private Sub Class_Terminate()
-    If Not IE.visible Then IE.Quit
+    If Not ie.visible Then ie.quit
     
-    Set IE = Nothing
+    Set ie = Nothing
 End Sub
 
 
