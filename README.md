@@ -1,7 +1,7 @@
 # Scraping web
  Library to extract data from websites
 
- Librería para facilitar la extracción de datos de internet
+ Librería que facilita extracción de datos de internet
 
 ## Issues
  If you find an error or want to suggest an improvement [write to me](https://github.com/vba-dev/vba-scraping/issues)
@@ -11,7 +11,7 @@
 ## Tests
  To perform the tests is using the library [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
 
- Para realizar las pruebas se está utilizando la librería [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
+ Para realizar las pruebas estoy utilizando la librería [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
 
  ## Examples
  ### Class XmlScraping
@@ -34,7 +34,7 @@ End Sub
 
  ### Class Scraping
  ```vb
- Sub ScrapingTest()
+ Sub Example()
 
     Dim browser As New Scraping
 
