@@ -58,15 +58,29 @@ Public Sub gotoPage(url As String, Optional visibleBrowser As Boolean = False)
 End Sub
 
 ''
-' Select an elements with the specified id
+' Select a collection of elements
 '
-' @param {String} idName
+' @param {String} selector
+' @return Scraping
+'
+' Example selector  id: "#nameId" | class: ".nameClas" | tag: "nameTag"
+''
+Public Function css(selector As String) As Scraping
+    Set children = doc.querySelectorAll(selector)
+    
+    Set css = Me
+End Function
+
+''
+' Select the first element in the collection
+'
+' @param {String} selector
 ' @return Scraping
 ''
-Public Function id(idName As String) As Scraping
-    Set element = doc.getElementById(idName)
-
-    Set id = Me
+Public Function at_css(selector As String) As Scraping
+    Set element = doc.querySelector(selector)
+    
+    Set at_css = Me
 End Function
 
 ''
@@ -103,29 +117,15 @@ Public Function count() As Integer
 End Function
 
 ''
-' Select a collection of elements
+' Select an elements with the specified id
 '
-' @param {String} selector
+' @param {String} idName
 ' @return Scraping
-'
-' Example selector  id: "#nameId" | class: ".nameClas" | tag: "nameTag"
 ''
-Public Function css(selector As String) As Scraping
-    Set children = doc.querySelectorAll(selector)
-    
-    Set css = Me
-End Function
+Public Function id(idName As String) As Scraping
+    Set element = doc.getElementById(idName)
 
-''
-' Select the first element in the collection
-'
-' @param {String} selector
-' @return Scraping
-''
-Public Function at_css(selector As String) As Scraping
-    Set element = doc.querySelector(selector)
-    
-    Set at_css = Me
+    Set id = Me
 End Function
 
 ''
@@ -160,6 +160,16 @@ Public Sub click()
 
     Set click = Me
 End Sub
+
+''
+' Returns the value of the specified attribute
+'
+' @param {String} atributeName
+' @return String
+''
+Public Function attr(atributeName As String) As String
+    attr = element.getAttribute(atributeName)
+End Function
 
 ' --------------------------------------------- '
 ' Private Methods
