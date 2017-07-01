@@ -19,40 +19,43 @@
     <div class="slogan">Extract data from the web easily</div>
 
 
-    <div class="example">
+
+    <div class="example"> <!-- definition object -->
       <div class="defined code">
 <pre>
-<spam class="kw">Dim</spam> page <spam class="kw">As New</spam> XmlScraping
+<spam class="kw">Dim</spam> doc <spam class="kw">As New</spam> XmlScraping
 
-page.gotoPage "https://example.com/"
+doc.gotoPage "https://example.com/"
 </pre>
       </div>
-    </div> <!-- example definition -->
+    </div> <!-- end definition -->
 
 
-    <div class="example">
-      <div class="code">
-        <div class="description">The <strong>text</strong> of the first <span class="element">&lt;li&gt;</span> element</div>
+
+    <div class="example"> <!-- example -->
+      <div class="code"> <!-- vba -->
+        <div class="description">The <strong>text</strong> of the first <span class="element">&lt;a&gt;</span> element</div>
 <pre>
 
-page.css("li").index(0).text
+doc.css("a").index(0).text
 </pre>
-      </div><!-- vba -->
+      </div><!-- end vba -->
 
-      <div class="code">
+      <div class="code"> <!-- html -->
 <pre>
 &lt;div id="bar"&gt;
   &lt;p&gt;Links:&lt;/p&gt;
   &lt;ul&gt;
-    &lt;li&gt;<span class="selected">&lt;a&gt;href="http://github.com">Github&lt;/a&gt;</span>&lt;/li&gt;
+    &lt;li&gt;&lt;a&gt;href="http://github.com"><span class="selected">Github</span>&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a&gt;href="http://w3schools.com">w3schools&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a&gt;href="http://youtube.com/">YouTube&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a&gt;href="http://wikipedia.org">Wikipedia&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div>
 </pre>
-      </div><!-- html -->
-    </div><!-- example li-->
+      </div> <!-- end html -->
+    </div> <!-- end example-->
+
 
 
     <div class="download">
@@ -61,36 +64,58 @@ page.css("li").index(0).text
 
     <div class="moreExamples">More examples</div>
 
-    <div class="example">
-      <div class="code">
+
+
+    <div class="example"> <!-- example -->
+      <div class="code"> <!-- vba -->
+        <div class="description">The <strong>text</strong> of an element with id
+<pre>
+
+doc.id("nameId").text
+</pre>
+        </div>
+      </div><!-- end vba -->
+
+      <div class="code"><!-- html -->
+<pre>
+&lt;div&gt;&lt;button id="nameId"&gt;<span class="selected">Submit</span>&lt;/button&gt;&lt;/div&gt;
+</pre>
+      </div><!-- end html -->
+    </div><!-- end example -->
+
+
+
+    <div class="example"> <!-- example -->
+      <div class="code"> <!-- vba -->
         <div class="description">The <span class="element">&lt;title&gt;</span> element</div>
 <pre>
 
-page.css('title')
+doc.css('title')
 </pre>
-      </div><!-- vba -->
+      </div><!-- end vba -->
 
-      <div class="code">
+      <div class="code"><!-- html -->
 <pre>
 &lt;html&gt;
 &lt;head&gt;<span class="selected">&lt;title&gt;My webpage&lt;/title&gt;</span>&lt;/head&gt;
 &lt;body&gt;
 &lt;h1&gt;Hello!&lt;/h1&gt;
 </pre>
-      </div><!-- html -->
-    </div><!-- example title -->
+      </div><!-- end html -->
+    </div><!-- end example -->
 
 
-    <div class="example">
-      <div class="code">
+
+    <div class="example"><!-- example -->
+      <div class="code"><!-- vba -->
         <div class="description">All <span class="element">&lt;li&gt;</span> elements</div>
 <pre>
 
-page.css("li")
+doc.css("li")
 </pre>
-      </div><!-- vba -->
+      </div><!-- end vba -->
 
-      <div class="code">
+      <div class="code"> <!-- html -->
 <pre>
 &lt;div id="bar"&gt;
   &lt;p&gt;Links:&lt;/p&gt;
@@ -102,20 +127,21 @@ page.css("li")
   &lt;/ul&gt;
 &lt;/div>
 </pre>
-      </div><!-- html -->
-    </div><!-- example li-->
+      </div><!-- end html -->
+    </div><!-- end example -->
 
 
-    <div class="example">
-      <div class="code">
+
+    <div class="example"><!-- example -->
+      <div class="code"><!-- vba -->
         <div class="description">The <strong>url</strong> of the <strong>second</strong> <span class="element">&lt;a&gt;</span> element</div>
 <pre>
 
-page.css("a").index(1).attr("href")
+doc.css("a").index(1).attr("href")
 </pre>
-      </div><!-- vba -->
+      </div><!-- end vba -->
 
-      <div class="code">
+      <div class="code"><!-- html -->
 <pre>
 &lt;div id="bar"&gt;
   &lt;p&gt;Links:&lt;/p&gt;
@@ -127,8 +153,8 @@ page.css("a").index(1).attr("href")
   &lt;/ul&gt;
 &lt;/div>
 </pre>
-      </div><!-- html -->
-    </div><!-- example attr-->
+      </div><!-- end html -->
+    </div><!-- end example -->
 
 </body>
 </html>
