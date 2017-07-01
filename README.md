@@ -1,12 +1,12 @@
 # Scraping web
  Library to extract data from websites
 
- Librería que facilita extracción de datos de internet
+ Librería que facilita la extracción de datos de internet
 
 ## Issues
  If you find an error or want to suggest an improvement [write to me](https://github.com/vba-dev/vba-scraping/issues)
 
- Si encuentras un error o quieres sugerir una mejora [escribeme](https://github.com/vba-dev/vba-scraping/issues)
+ Si encuentras un error o quieres sugerir una mejora [escríbeme](https://github.com/vba-dev/vba-scraping/issues)
 
 ## Tests
  To perform the tests is using the library [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
