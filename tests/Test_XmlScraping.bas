@@ -1,7 +1,7 @@
 Attribute VB_Name = "Test_XmlScraping"
 Option Explicit
 
-Sub XmlScrapingTest()
+Sub TestTextHtml()
     Dim Specs As New SpecSuite
     Dim Doc As New XmlScraping
 
@@ -18,7 +18,7 @@ Sub XmlScrapingTest()
     InlineRunner.RunSuite Specs
 End Sub
 
-Sub XmlCollection()
+Sub TestCollection()
     Dim Specs As New SpecSuite
     Dim Doc As New XmlScraping
 

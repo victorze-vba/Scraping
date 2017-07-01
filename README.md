@@ -38,8 +38,6 @@ End Sub
 
     Dim browser As New Scraping
 
-    browser.gotoPage "https://stackoverflow.com/"
-
     browser.gotoPage "https://stackoverflow.com/", True
 
     browser.Id("nav-questions").Click.Quit
