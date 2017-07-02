@@ -13,7 +13,6 @@ Attribute VB_Exposed = True
 '
 ' Library used: Microsoft Internet Controls,
 '               Microsoft HTML Object Library
-'               Microsoft Scripting Runtime
 '
 ' @class Scraping
 ' @author victorzevallos@protonmail.com
@@ -31,8 +30,6 @@ Private ie As SHDocVw.InternetExplorer
 Private doc As New MSHTML.HTMLDocument
 
 Private element As MSHTML.IHTMLElement
-
-Private elements As MSHTML.IHTMLElementCollection
 
 Private children As MSHTML.IHTMLDOMChildrenCollection
 
@@ -202,15 +199,6 @@ End Sub
 ''
 Private Sub pause(Seconds As Byte)
     Application.wait (Now + TimeValue("0:00:0" + CStr(Seconds)))
-End Sub
-
-''
-' Runs when instantiating on object
-'
-' @return void
-''
-Private Sub Class_Initialize()
-    
 End Sub
 
 ''

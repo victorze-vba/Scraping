@@ -1,4 +1,4 @@
-Attribute VB_Name = "Real_examples"
+Attribute VB_Name = "examples"
 Option Explicit
 
 Sub do_a_search_on_wikipedia()
@@ -8,7 +8,7 @@ Sub do_a_search_on_wikipedia()
     
     search = "document object model"
     
-    doc.gotoPage "https://en.wikipedia.org/wiki/Main_Page", True
+    doc.gotoPage "https://en.wikipedia.org/wiki/Main_Page", True 'browser visible
 
     doc.id("searchInput").fieldValue search
     doc.id("searchButton").click

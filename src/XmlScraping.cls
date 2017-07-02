@@ -29,8 +29,6 @@ Private doc As New MSHTML.HTMLDocument
 
 Private element As MSHTML.IHTMLElement
 
-Private elements As MSHTML.IHTMLElementCollection
-
 Private children As MSHTML.IHTMLDOMChildrenCollection
 
 ' --------------------------------------------- '

@@ -1,7 +1,7 @@
 # Scraping web
- Library to extract data from websites
+ Extract data from websites easily.
 
- Librería que facilita la extracción de datos de internet
+ Extrae datos de sitios web facilmente.
 
 ## Issues
  If you find an error or want to suggest an improvement [write to me](https://github.com/vba-dev/vba-scraping/issues)
@@ -19,9 +19,9 @@ Sub do_a_search_on_wikipedia()
 
     Dim doc As New Scraping
     Dim search As String
-    
+
     search = "document object model"
-    
+
     doc.gotoPage "https://en.wikipedia.org/wiki/Main_Page", True 'browser visible
 
     doc.id("searchInput").fieldValue search
@@ -37,7 +37,7 @@ Sub extract_the_titles_of_the_questions_in_stackoverflow()
     Dim doc As New XmlScraping
     Dim numberTitles As Integer
 
-    doc.gotoPage "https://stackoverflow.com/" 'browser not visible
+    doc.gotoPage "https://stackoverflow.com/"
 
     numberTitles = doc.css(".summary h3 a").count
 

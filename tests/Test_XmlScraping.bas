@@ -35,7 +35,7 @@ Sub TestCollection()
     End With
     
     With Specs.It("Select class")
-        .Expect(doc.css(".download a").index(0).attr("href")).ToEqual "about:examples.xlsm"
+        .Expect(doc.css(".download a").index(0).attr("href")).ToEqual "about:Scraping_web.xlsm"
     End With
     
     InlineRunner.RunSuite Specs
