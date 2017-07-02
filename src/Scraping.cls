@@ -11,7 +11,9 @@ Attribute VB_Exposed = True
 ' Scraping v0.1.1 Alpha
 ' (c) Victor Zevallos - https://github.com/vba-dev/vba-scraping
 '
-' Library used: Microsoft Internet Controls, Microsoft HTML Object Library
+' Library used: Microsoft Internet Controls,
+'               Microsoft HTML Object Library
+'               Microsoft Scripting Runtime
 '
 ' @class Scraping
 ' @author victorzevallos@protonmail.com
@@ -84,18 +86,6 @@ Public Function at_css(selector As String) As Scraping
 End Function
 
 ''
-' Select a collection of elements with the class className
-'
-' @param {String} className
-' @return Scraping
-''
-Public Function Class(className As String) As Scraping
-    Set elements = doc.getElementsByClassName(className)
-    
-    Set Class = Me
-End Function
-
-''
 ' Select an item from an elements collection
 '
 ' @param {Integer} i
@@ -108,7 +98,16 @@ Public Function index(i As Integer) As Scraping
 End Function
 
 ''
-' Returns the number of items in the collection
+' Return to an object to work with tables
+'
+' @return MSHTML.HTMLTableRow
+''
+Public Function rowTable() As MSHTML.HTMLTableRow
+    Set rowTable = element
+End Function
+
+''
+' Return the number of items in the collection
 '
 ' @return Integer
 ''
@@ -129,7 +128,7 @@ Public Function id(idName As String) As Scraping
 End Function
 
 ''
-' Returns the text of the selected element
+' Return the text of the selected element
 '
 ' @return String
 ''
@@ -138,7 +137,7 @@ Public Function text() As String
 End Function
 
 ''
-' Returns the html of the selected element
+' Return the html of the selected element
 '
 ' @return String
 ''
@@ -147,28 +146,39 @@ Public Function html() As String
 End Function
 
 ''
-' Click an element
-'
-' @return void
-''
-Public Sub click()
-    element.click
-
-    loadBrowser
-
-    sleep 3
-
-    Set click = Me
-End Sub
-
-''
-' Returns the value of the specified attribute
+' Return the value of the specified attribute
 '
 ' @param {String} atributeName
 ' @return String
 ''
 Public Function attr(atributeName As String) As String
     attr = element.getAttribute(atributeName)
+End Function
+
+''
+' Click an element
+'
+' @return void
+''
+Public Sub click(Optional sleep As Byte = 3)
+    element.click
+    
+    loadBrowser
+    
+    pause sleep
+    
+    Set doc = ie.Document
+End Sub
+
+''
+' Assigns a value to a text or select element
+'
+' @return void
+''
+Public Function fieldValue(str As String) As Scraping
+    element.value = str
+
+    Set fieldValue = Me
 End Function
 
 ' --------------------------------------------- '
@@ -190,8 +200,8 @@ End Sub
 '
 ' @return void
 ''
-Private Sub sleep(Seconds As Byte)
-    Application.Wait (Now + TimeValue("0:00:0" + CStr(Seconds)))
+Private Sub pause(Seconds As Byte)
+    Application.wait (Now + TimeValue("0:00:0" + CStr(Seconds)))
 End Sub
 
 ''
@@ -213,6 +223,3 @@ Private Sub Class_Terminate()
     
     Set ie = Nothing
 End Sub
-
-
-

@@ -11,7 +11,8 @@ Attribute VB_Exposed = False
 ' Scraping v0.1.1 Alpha
 ' (c) Victor Zevallos - https://github.com/vba-dev/vba-scraping
 '
-' Library used: Microsoft XML, v6.0, Microsoft HTML Object Library
+' Library used: Microsoft XML v6.0
+'               Microsoft HTML Object Library
 '
 ' @class XmlScraping
 ' @author victorzevallos@protonmail.com
@@ -78,18 +79,6 @@ Public Function at_css(selector As String) As XmlScraping
 End Function
 
 ''
-' Select a collection of elements with the class className
-'
-' @param {String} className
-' @return XmlScraping
-''
-Public Function Class(className As String) As XmlScraping
-    Set elements = doc.getElementsByClassName(className)
-    
-    Set Class = Me
-End Function
-
-''
 ' Select an item from an elements collection
 '
 ' @param {Integer} i
@@ -102,14 +91,22 @@ Public Function index(i As Integer) As XmlScraping
 End Function
 
 ''
-' Returns the number of items in the collection
+' return to an object to work with tables
+'
+' @return MSHTML.HTMLTableRow
+''
+Public Function rowTable() As MSHTML.HTMLTableRow
+    Set rowTable = element
+End Function
+
+''
+' Return the number of items in the collection
 '
 ' @return Integer
 ''
 Public Function count() As Integer
     count = children.Length
 End Function
-
 
 ''
 ' Select an elements with the specified id
@@ -124,7 +121,7 @@ Public Function id(idName As String) As XmlScraping
 End Function
 
 ''
-' Returns the text of the selected element
+' Return the text of the selected element
 '
 ' @return String
 ''
@@ -132,9 +129,8 @@ Public Function text() As String
     text = element.innerText
 End Function
 
-
 ''
-' Returns the html of the selected element
+' Return the html of the selected element
 '
 ' @return String
 ''
@@ -143,7 +139,7 @@ Public Function html() As String
 End Function
 
 ''
-' Returns the value of the specified attribute
+' Return the value of the specified attribute
 '
 ' @param {String} atributeName
 ' @return String

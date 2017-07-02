@@ -14,33 +14,36 @@
  Para realizar las pruebas estoy utilizando la librería [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
 
  ## Examples
- ### Class XmlScraping
- ```vb
-Sub Example()
+```vb
+Sub do_a_search_on_wikipedia()
 
-    Dim doc As New XmlScraping
+    Dim doc As New Scraping
+    Dim search As String
+    
+    search = "document object model"
+    
+    doc.gotoPage "https://en.wikipedia.org/wiki/Main_Page", True 'browser visible
 
-    doc.gotoPage "https://vba-dev.github.io/vba-scraping/"
-
-    Debug.Print doc.css("span").index(5).html
-
-    Debug.Print doc.class("title").index(0).text
-
-    Debug.Print doc.css(".download a").index(0).attr("href")
+    doc.id("searchInput").fieldValue search
+    doc.id("searchButton").click
 
 End Sub
+```
 
- ```
+```vb
+Sub extract_the_titles_of_the_questions_in_stackoverflow()
 
- ### Class Scraping
- ```vb
- Sub Example()
+    Dim i As Integer
+    Dim doc As New XmlScraping
+    Dim numberTitles As Integer
 
-    Dim browser As New Scraping
+    doc.gotoPage "https://stackoverflow.com/" 'browser not visible
 
-    browser.gotoPage "https://stackoverflow.com/", True
+    numberTitles = doc.css(".summary h3 a").count
 
-    browser.Id("nav-questions").Click.Quit
+    For i = 0 To numberTitles - 1
+        Cells(i + 1, 1) = doc.css(".summary h3 a").index(i).text
+    Next i
 
 End Sub
 ```
