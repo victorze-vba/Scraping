@@ -1,4 +1,4 @@
-# Scraping web
+# Web Scraping
  Extract data from websites easily.
 
  Extrae datos de sitios web facilmente.
