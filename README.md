@@ -1,12 +1,6 @@
 # Web Scraping
  Extract data from websites easily.
 
-## Issues
- If you find an error or want to suggest an improvement [write to me](https://github.com/vba-dev/vba-scraping/issues
-
-## Tests
- To perform the tests is using the library [vba-tdd](https://github.com/VBA-tools/VBA-TDD)
-
  ## Examples
 ```vb
 Sub do_a_search_on_wikipedia()
